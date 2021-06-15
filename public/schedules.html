@@ -6,32 +6,50 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js" integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-
-  <style>
-    *{-webkit-box-sizing:border-box;text-decoration:none}body,html{font-size:62.5%;-webkit-font-smoothing:antialiased}body{font-size:1.3rem;font-family:Lato,Helvetica,Arial,Verdana,sans-serif;background:#fafafb;margin:0;color:#333740;line-height:1.8rem}strong{font-weight:700}.wrapper{width:684px;margin:auto}h1{text-align:center}h2{font-size:1.8rem;font-weight:700;margin-bottom:1px}.logo{height:40px;margin-bottom:74px}p{margin: 0px}.block{border-left:4px solid green; position:relative;display:flex;justify-content:space-between;height:126px;margin:18px;padding:20px 30px;background:#fff;border-radius:4px;box-shadow:2px 2px 4px 0 #e3e9f3}.environment{display:inline-block;padding:0 10px;height:20px;margin-bottom:16px;background:#e6f0fb;border:1px solid #aed4fb;border-radius:2px;text-transform:uppercase;color:#007eff;font-size:1.2rem;font-weight:700;line-height:20px;letter-spacing:.05rem}.cta{display:inline-block;padding:5px 15px;margin:10px;border-radius:2px;color:#fff;font-weight:700;line-height:28px}.cta i{position:relative;display:inline-block;height:100%;vertical-align:middle;margin-right:0px}.cta i:before{position:absolute;top:8px}.cta-primary{ font-size:13px; background:#007eff}.cta-primary:hover{background:#006eff; color: #ffffff; text-decoration: none}.cta-secondary{background:#6dbb1a}.text-align-right{text-align:right}.lets-started{position:relative;overflow:hidden;width:100%;height:144px;margin-top:18px;padding:20px 30px;background:#fff;border-radius:2px;box-shadow:0 2px 4px 0 #e3e9f3}.people-saying-hello{position:absolute;right:30px;bottom:-8px;width:113px;height:70px}.visible{opacity:1!important}.people-saying-hello img{position:absolute;max-width:100%;opacity:0;transition:opacity .2s ease-out}@media only screen and (max-width:768px){.wrapper{width:auto!important;margin:0 20px}.block{ }.environment{width:100%;text-align:center;margin-bottom:18px}.text-align-right{margin-top:18px;text-align:center}.cta{width:100%;text-align:center}.lets-started{height:auto}.people-saying-hello{display:none}}
-  </style>
+  <script src="assets/js/schedules.js"></script>
+  <link href='/assets/css/main.css' rel='stylesheet' />
+  <link rel="stylesheet" href="assets/css/schedules.css">
 </head>
 
 <body>
+  <!-- NAVIGATION START -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
 
-  <nav class="navbar navbar-light bg-light">
-    <a class="navbar-brand" href="#">
-      <div class="container">
-      <img src="/assets/images/logo_login.png" width="100" class="d-inline-block align-top" alt="">
-      </div>
+    <a class="navbar-brand" href="/">
+      <img src="assets/images/logo_login.png" width="100" class="d-inline-block align-top" alt="">
     </a>
-  </nav>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
 
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link active" aria-current="page" href="/">Schedule Shift</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="calendar.html">View Calendar</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link " href="/admin" >Admin Dashboard</a>
+        </li>
+      </ul>
+
+    </div>
+  </nav>
+  <!-- NAVIGATION END -->
+
+  <!-- BREAD CRUMBS START -->
   <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
       <li class="breadcrumb-item"><a href="/">Home</a></li>
       <li class="breadcrumb-item active" aria-current="page">Claim Blocks</li>
     </ol>
   </nav>
+  <!-- BREAD CRUMBS END -->
 
-<h1>
-  Schedule Shift
-</h1>
+  <h1>Schedule Shift</h1>
 
   <ul class="nav nav-tabs">
     <li class="nav-item">
@@ -41,103 +59,11 @@
       <a class="nav-link active" aria-current="page" href="#">Available</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="#">Scheduled</a>
+      <a class="nav-link" href="/blocks?claimedByUser=1">Scheduled ( `/blocks REST endpoint` )</a>
     </li>
   </ul>
 
   <div id='schedule'></div>
 
-  <script>
-    document.addEventListener('DOMContentLoaded', function() {
-
-      let blocks = {};
-      let xhttp = new XMLHttpRequest();
-
-      xhttp.onreadystatechange = function() {
-
-        if (this.readyState == 4 && this.status == 200) {
-
-          blocks = JSON.parse(this.responseText);
-          let scheduleElement = document.getElementById('schedule');
-          scheduleElement.innerHTML = ``;
-
-          for(const block of blocks){
-            const blockElement = document.createElement('div');
-            const disabled = (block.claimedByUser ? "disabled" : "");
-            let claimButton = `<button id="${block.id}" class="claim_block btn btn-primary btn-lg " ${disabled} href="#"  >CLAIM</button>`
-            const claimedByUser = (block.claimedByUser && block.claimedByUser.firstname ? block.claimedByUser.firstname : "");
-            if(block.claimedByUser){
-              claimButton = `<button id="${block.id}" class="claimed_block btn btn-danger btn-lg " href="#"  >DROP</button>`
-            }
-            blockElement.innerHTML = `
-              <div class="block">
-                <div>
-                  <span class="environment">${moment(block.start).format('dddd MMMM Do YYYY')}</strong></span>
-                  <p>
-                     <strong>${block.sub_market.name}</strong> - ${block.title}
-                     <strong>${claimedByUser}</strong> - ${block.title}
-                  </p>
-                  <p><strong>${moment(block.start).format('h:mm a')} -  ${moment(block.end).format('h:mm a')}</strong></p>
-                </div>
-                <div class="text-align-right ">
-                       ${claimButton}
-                </div>
-              </div>
-            `;
-            scheduleElement.appendChild(blockElement)
-            console.log(block);
-          }
-
-          $('.claim_block').click(function(){
-            console.log("click");
-            const id = $(this).attr('id');
-            console.log(id);
-            $.ajax({
-              'type':'PUT',
-              'data':`claimedByUser=1`,
-              'success':function(data) { console.log('success', data); getClaims(); },
-              'error':function(){ console.error('error') },
-              'url':`/blocks/${id}`,
-              'cache':true
-            });
-
-          });
-
-          $('.claimed_block').click(function(){
-            console.log("click");
-            const id = $(this).attr('id');
-            console.log(id);
-            $.ajax({
-              'type':'PUT',
-              'data':``,
-              'success':function(data) { console.log('success', data); getClaims();  },
-              'error':function(){ console.error('error') },
-              'url':`/blocks/${id}/dropClaim`,
-              'cache':true
-            });
-
-          });
-
-        }
-      };
-
-      function getClaims() {
-        xhttp.open("GET", "/blocks?sub_market.id=2", true);
-        xhttp.send();
-      }
-      getClaims();
-
-
-      // xhttp.open("POST", '/blocks/claim', true);
-      // xhttp.setRequestHeader('Content-Type', 'application/json');
-      // xhttp.send(JSON.stringify({
-      //   value: value
-      // }));
-
-
-    });
-
-
-  </script>
 </body>
 </html>
