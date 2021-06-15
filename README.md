@@ -1,3 +1,7 @@
-# Strapi application
+# Waitr Scheduling POC Strapi
 
-A quick description of your strapi application
+Type the following in the cli to get started:
+
+`npm install`
+
+`strapi dev`
