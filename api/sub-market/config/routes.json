@@ -1,0 +1,52 @@
+{
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/sub-markets",
+      "handler": "sub-market.find",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/sub-markets/count",
+      "handler": "sub-market.count",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/sub-markets/:id",
+      "handler": "sub-market.findOne",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/sub-markets",
+      "handler": "sub-market.create",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "PUT",
+      "path": "/sub-markets/:id",
+      "handler": "sub-market.update",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "DELETE",
+      "path": "/sub-markets/:id",
+      "handler": "sub-market.delete",
+      "config": {
+        "policies": []
+      }
+    }
+  ]
+}

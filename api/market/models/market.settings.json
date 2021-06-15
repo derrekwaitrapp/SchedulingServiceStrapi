@@ -1,0 +1,29 @@
+{
+  "kind": "collectionType",
+  "collectionName": "markets",
+  "info": {
+    "name": "Market",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "submarkets": {
+      "collection": "sub-market"
+    },
+    "companies": {
+      "via": "markets",
+      "collection": "company"
+    }
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "kind": "collectionType",
+  "collectionName": "blocks",
+  "info": {
+    "name": "block",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "start": {
+      "type": "datetime"
+    },
+    "end": {
+      "type": "datetime"
+    },
+    "claimedByUser": {
+      "plugin": "admin",
+      "model": "user"
+    },
+    "sub_market": {
+      "via": "blocks",
+      "model": "sub-market"
+    }
+  }
+}

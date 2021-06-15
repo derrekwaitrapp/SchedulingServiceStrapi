@@ -1,0 +1,29 @@
+{
+  "kind": "collectionType",
+  "collectionName": "sub_markets",
+  "info": {
+    "name": "SubMarket",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "schedules": {
+      "collection": "schedule"
+    },
+    "blocks": {
+      "collection": "block",
+      "via": "sub_market"
+    }
+  }
+}
