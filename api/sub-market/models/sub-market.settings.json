@@ -18,9 +18,6 @@
     "description": {
       "type": "string"
     },
-    "schedules": {
-      "collection": "schedule"
-    },
     "blocks": {
       "collection": "block",
       "via": "sub_market"

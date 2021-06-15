@@ -677,12 +677,6 @@
               "description": {
                 "type": "string"
               },
-              "schedules": {
-                "type": "array",
-                "items": {
-                  "type": "string"
-                }
-              },
               "blocks": {
                 "type": "array",
                 "items": {

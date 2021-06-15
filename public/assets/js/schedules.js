@@ -75,7 +75,7 @@ document.addEventListener('DOMContentLoaded', function() {
   };
 
   function getClaims() {
-    xhttp.open("GET", "/blocks?sub_market.id=2", true);
+    xhttp.open("GET", "/blocks?sub_market.id=1", true);
     xhttp.send();
   }
 

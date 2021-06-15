@@ -541,37 +541,6 @@
           "description": {
             "type": "string"
           },
-          "schedules": {
-            "type": "array",
-            "items": {
-              "required": [
-                "id"
-              ],
-              "properties": {
-                "id": {
-                  "type": "string"
-                },
-                "Name": {
-                  "type": "string"
-                },
-                "blocks": {
-                  "type": "component"
-                },
-                "submarket": {
-                  "type": "string"
-                },
-                "published_at": {
-                  "type": "string"
-                },
-                "created_by": {
-                  "type": "string"
-                },
-                "updated_by": {
-                  "type": "string"
-                }
-              }
-            }
-          },
           "blocks": {
             "type": "array",
             "items": {
@@ -622,12 +591,6 @@
           },
           "description": {
             "type": "string"
-          },
-          "schedules": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            }
           },
           "blocks": {
             "type": "array",
